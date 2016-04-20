@@ -6,27 +6,29 @@
 
 ###Hadoop Steps
    
-1. Upload your pem file on AWS instance. Do the following procedure to give access and do ssh.
+
+1. Upload your pem file on AWS instance. Do the following procedure to give access. 
+	
 	eval `ssh-agent -s`
 	chmod 600 Hadoop.pem
 	ssh-add Hadoop.pem 
 
 2. Mount additional drives (put Mount.sh script here):
 
-	bash Mount.sh	
+	*bash Mount.sh*
 
 3.Format the Hadoop namenode.
- 	hadoop namenode -format
+ 	*hadoop namenode -format*
 
 4.Start all the services from the hadoop/sbin:
-	./hadoop/sbin/start-dfs.sh
-	./hadoop/sbin/start-yarn.sh
+	*./hadoop/sbin/start-dfs.sh*
+	*./hadoop/sbin/start-yarn.sh*
 
 ->  In case nodemanger won't start, start it manually:
-	./hadoop/sbin/yarn-deamon.sh start nodemanager
+	*./hadoop/sbin/yarn-deamon.sh start nodemanager*
 
 ->  Check on master and slave both for the active running services:
-	jps
+	__jps__
 
 ->  Check online for total running datanodes on slave and status:
         MASTER_PUBLIC_DNS:50070
@@ -59,12 +61,16 @@
 	sudo yum install unix2dos ( to install application in System)
 	unix2dos output_file_name	
 
-11. validate it with valsort:
+11. validate it with __valsort__:
 	*./valsort output_file_name*
 
 
 
+
+
 ###Spark Steps
+
+
 
 
 1. by default drive is mounted on /media/ephermal0 which I prefered to /mnt/raid , so Did following changes:
@@ -77,10 +83,11 @@
 
 
 3. Slave nodes are come with drive mounted, to run program go to following path:
-	  cd spark/
-	 *./pyspark*
+	  
+	cd spark/
+	*./pyspark*
 
-3. type "Python program_name.py" ; it will generate output.
+3. Type "Python program_name.py" ; it will generate output.
 
 4. To checck the output data:
 	
@@ -94,11 +101,15 @@
 
 
 
-###Shared Memory
+
+
+###Shared Memory/External Memory
+
+
 
 
 Data Set Generation:
-	Generate the data with gensort at location /mnt/raid with file name "input"
+	Generate the data with [gensort](http://www.ordinal.com/gensort.html) at location /mnt/raid with file name "input"
 
 
 1. Run program:
@@ -106,6 +117,8 @@ Data Set Generation:
 
 2. Fetch output file from "/mnt/raid/" , filename: output
 
-3. Convert output file with: unix2dos /mnt/raid/output
+3. Convert output file to dos Format: 
+	*unix2dos /mnt/raid/output*
 
-4. Check with valsort: ./valsort /mnt/raid/output
+4. Check with [valsort](http://www.ordinal.com/gensort.html): 
+ 	./valsort /mnt/raid/output
